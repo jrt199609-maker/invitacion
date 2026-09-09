@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitación · Alondra 22</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Quicksand:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(145deg, #fce4ec 0%, #f8e8f0 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Quicksand', sans-serif;
+            padding: 20px;
+        }
+
+        .invitacion {
+            max-width: 750px;
+            width: 100%;
+            background: rgba(119, 176, 145, 0.92);
+            backdrop-filter: blur(4px);
+            border-radius: 60px 60px 60px 60px;
+            box-shadow: 0 25px 40px -10px rgba(180, 80, 120, 0.4),
+                        0 10px 20px -5px rgba(0, 0, 0, 0.1);
+            padding: 2.5rem 2.2rem;
+            border: 2px solid #ffffffaa;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .invitacion::before {
+            content: "🎈";
+            position: absolute;
+            font-size: 8rem;
+            opacity: 0.06;
+            top: -20px;
+            right: -10px;
+            transform: rotate(20deg);
+            pointer-events: none;
+        }
+
+        .invitacion::after {
+            content: "✨";
+            position: absolute;
+            font-size: 6rem;
+            opacity: 0.05;
+            bottom: 0;
+            left: 0;
+            transform: rotate(-10deg);
+            pointer-events: none;
+        }
+
+        .titulo-principal {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 2.8rem;
+            color: #871066;
+            letter-spacing: 1px;
+            margin-bottom: 0.25rem;
+            display: inline-block;
+        }
+
+        .titulo-principal::after {
+            content: "🎂";
+            font-size: 2.2rem;
+            margin-left: 8px;
+            display: inline-block;
+        }
+
+        .subtitulo {
+            font-weight: 300;
+            font-size: 1.2rem;
+            color: #7a4b5c;
+            background: #fce4ec99;
+            display: inline-block;
+            padding: 0.2rem 1.8rem;
+            border-radius: 40px;
+            margin-bottom: 1.8rem;
+            letter-spacing: 2px;
+            border: 1px solid #f8c8d8;
+        }
+
+        .nombre-festejada {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 4.5rem;
+            color: #b3416b;
+            text-shadow: 0 4px 12px rgba(190, 70, 110, 0.2);
+            margin: 0.3rem 0 0.2rem 0;
+            line-height: 1.1;
+        }
+
+        .edad {
+            font-family: 'Playfair Display', serif;
+            font-weight: 400;
+            font-size: 2.8rem;
+            color: #a54b6b;
+            background: #ffeef3;
+            display: inline-block;
+            padding: 0.1rem 2rem;
+            border-radius: 80px;
+            margin: 0.2rem 0 1.5rem 0;
+            border: 2px dashed #d987a7;
+            letter-spacing: 2px;
+        }
+
+        /* CONTADOR REGRESIVO */
+        .contador {
+            background: linear-gradient(135deg, #b3416b, #d47a9a);
+            border-radius: 30px;
+            padding: 1.5rem 1rem;
+            margin: 1rem 0 1.5rem 0;
+            box-shadow: 0 8px 25px rgba(180, 70, 110, 0.3);
+            border: 2px solid #ffffffcc;
+        }
+
+        .contador-titulo {
+            color: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            margin-bottom: 0.8rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .contador-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .contador-item {
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(5px);
+            border-radius: 20px;
+            padding: 0.5rem 0.2rem;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .contador-numero {
+            color: white;
+            font-size: 2.2rem;
+            font-weight: 700;
+            display: block;
+            line-height: 1.2;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .contador-etiqueta {
+            color: rgba(255,255,255,0.9);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .detalle {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .detalle-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: #ffffffcc;
+            padding: 0.8rem 2.2rem;
+            border-radius: 60px;
+            box-shadow: 0 4px 12px rgba(160, 80, 110, 0.08);
+            width: fit-content;
+            border: 1px solid #fadce6;
+            font-size: 1.4rem;
+            font-weight: 400;
+            color: #3d2a30;
+        }
+
+        .detalle-item i {
+            color: #b3416b;
+            font-size: 1.9rem;
+            width: 2rem;
+            text-align: center;
+        }
+
+        .fecha-destacada {
+            background: #b3416b10;
+            border-radius: 40px;
+            padding: 0.1rem 1.2rem;
+            font-weight: 600;
+            color: #a13d5f;
+        }
+
+        .direccion {
+            background: #ffffffcc;
+            padding: 1rem 2.5rem;
+            border-radius: 60px;
+            display: inline-block;
+            border: 2px solid #f8c8d8;
+            box-shadow: 0 4px 10px rgba(180, 70, 110, 0.08);
+            margin: 0.8rem 0;
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #2f1e24;
+        }
+
+        .direccion i {
+            color: #b3416b;
+            margin-right: 15px;
+            font-size: 1.8rem;
+        }
+
+        .mensaje {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-weight: 400;
+            font-size: 1.6rem;
+            color: #6e4153;
+            background: #ffffffb0;
+            padding: 0.8rem 1rem;
+            border-radius: 100px;
+            margin: 1rem 0 1.2rem 0;
+            border-top: 2px solid #f8cddd;
+            border-bottom: 2px solid #f8cddd;
+        }
+
+        /* BOTONES */
+        .botones-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin: 1rem 0 0.5rem 0;
+        }
+
+        .boton-whatsapp {
+            background: #25D366;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 60px;
+            color: white;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+            transition: all 0.2s ease;
+            border: 2px solid #ffffffdd;
+            text-decoration: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .boton-whatsapp i {
+            font-size: 1.8rem;
+        }
+
+        .boton-whatsapp:hover {
+            background: #20b859;
+            transform: scale(1.02);
+            box-shadow: 0 12px 28px rgba(37, 211, 102, 0.5);
+        }
+
+        .botones-secundarios {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .boton-secundario {
+            background: white;
+            border: 2px solid #f0d4de;
+            padding: 0.8rem 1rem;
+            border-radius: 60px;
+            color: #a13d5f;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(160, 80, 110, 0.08);
+        }
+
+        .boton-secundario i {
+            font-size: 1.4rem;
+        }
+
+        .boton-secundario:hover {
+            background: #fce4ec;
+            transform: scale(1.03);
+            box-shadow: 0 6px 16px rgba(160, 80, 110, 0.15);
+        }
+
+        .boton-musica {
+            background: linear-gradient(135deg, #b3416b, #d47a9a);
+            border: 2px solid #ffffffdd;
+            color: white;
+        }
+
+        .boton-musica:hover {
+            background: linear-gradient(135deg, #9e2f57, #c06a8a);
+        }
+
+        .boton-musica.playing {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
+
+        .footer {
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            color: #b27b8b;
+            letter-spacing: 1px;
+            border-top: 1px solid #f0d4de;
+            padding-top: 1.2rem;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .footer i {
+            color: #bf6a86;
+        }
+
+        /* Reproductor de música oculto */
+        #musica {
+            display: none;
+        }
+
+        /* responsive */
+        @media (max-width: 600px) {
+            .invitacion {
+                padding: 1.8rem 1.2rem;
+                border-radius: 40px;
+            }
+            .titulo-principal {
+                font-size: 2.2rem;
+            }
+            .nombre-festejada {
+                font-size: 3.2rem;
+            }
+            .edad {
+                font-size: 2rem;
+                padding: 0.1rem 1.2rem;
+            }
+            .detalle-item {
+                font-size: 1.1rem;
+                padding: 0.6rem 1.4rem;
+                gap: 10px;
+            }
+            .detalle-item i {
+                font-size: 1.5rem;
+                width: 1.5rem;
+            }
+            .direccion {
+                font-size: 1.2rem;
+                padding: 0.8rem 1.4rem;
+            }
+            .mensaje {
+                font-size: 1.3rem;
+            }
+            .boton-whatsapp {
+                font-size: 1rem;
+                padding: 0.9rem 1.5rem;
+            }
+            .botones-secundarios {
+                grid-template-columns: 1fr;
+            }
+            .contador-numero {
+                font-size: 1.8rem;
+            }
+            .contador-grid {
+                gap: 6px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="invitacion">
+        <!-- Música de fondo -->
+        <audio id="musica" loop>
+            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+            <!-- Si quieres usar una canción de YouTube, usa este enlace alternativo (canción libre de derechos) -->
+        </audio>
+
+        <!-- Encabezado -->
+        <div style="display: flex; justify-content: center; gap: 5px; font-size: 2.2rem; opacity: 0.3; margin-bottom: 0.2rem;">
+            <span>🌸</span> <span>🎀</span> <span>🌸</span>
+        </div>
+        
+        <h1 class="titulo-principal">Invitación</h1>
+        <div class="subtitulo">✨ cumpleaños ✨</div>
+
+        <!-- Nombre -->
+        <div class="nombre-festejada">ALONDRA</div>
+        <div class="edad">🎂 22 años 🎂</div>
+
+        <!-- CONTADOR REGRESIVO -->
+        <div class="contador">
+            <div class="contador-titulo">
+                <i class="fas fa-clock"></i> ¡Faltan!
+            </div>
+            <div class="contador-grid">
+                <div class="contador-item">
+                    <span class="contador-numero" id="dias">00</span>
+                    <span class="contador-etiqueta">Días</span>
+                </div>
+                <div class="contador-item">
+                    <span class="contador-numero" id="horas">00</span>
+                    <span class="contador-etiqueta">Horas</span>
+                </div>
+                <div class="contador-item">
+                    <span class="contador-numero" id="minutos">00</span>
+                    <span class="contador-etiqueta">Minutos</span>
+                </div>
+                <div class="contador-item">
+                    <span class="contador-numero" id="segundos">00</span>
+                    <span class="contador-etiqueta">Segundos</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Detalles -->
+        <div class="detalle">
+            <div class="detalle-item">
+                <i class="fas fa-calendar-alt"></i>
+                <span><span class="fecha-destacada">26 de septiembre</span> · 2026</span>
+            </div>
+            <div class="detalle-item">
+                <i class="fas fa-clock"></i>
+                <span>8:00 PM</span>
+            </div>
+        </div>
+
+        <!-- Dirección -->
+        <div class="direccion">
+            <i class="fas fa-map-pin"></i> Calle Arroyo · #23
+        </div>
+
+        <!-- Mensaje -->
+        <div class="mensaje">
+            “La vida es una fiesta, y tú eres la invitada de honor”
+        </div>
+
+        <!-- BOTONES -->
+        <div class="botones-container">
+            <!-- Botón WhatsApp con mensaje personalizado -->
+            <a href="https://wa.me/521234567890?text=¡Hola!%20🤩🥳%20Quiero%20confirmar%20mi%20asistencia%20a%20tu%20cumpleaños." 
+               target="_blank" 
+               class="boton-whatsapp">
+                <i class="fab fa-whatsapp"></i> Confirmar asistencia
+            </a>
+
+            <!-- Botones secundarios -->
+            <div class="botones-secundarios">
+                <!-- Botón Ubicación -->
+                <a href="https://www.google.com/maps/search/?api=1&query=Calle+Arroyo" 
+                   target="_blank" 
+                   class="boton-secundario">
+                    <i class="fas fa-map-marked-alt"></i> Ver ubicación
+                </a>
+
+                <!-- Botón Música -->
+                <button id="botonMusica" class="boton-secundario boton-musica" onclick="toggleMusica()">
+                    <i class="fas fa-music"></i> <span id="textoMusica">🎵 Música</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Confetis -->
+        <div style="margin: 1.2rem 0 0.2rem 0; font-size: 2rem; letter-spacing: 6px; opacity: 0.7;">
+            🎈🎉🎊🎈🎉
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <span><i class="fas fa-music"></i> ¡trae tu mejor energía!</span>
+            <span><i class="fas fa-gift"></i> solo tu presencia</span>
+            <span><i class="fas fa-glass-cheers"></i> brindis</span>
+        </div>
+
+        <!-- Nota -->
+        <div style="margin-top: 0.6rem; font-size: 0.85rem; color: #b48a99; letter-spacing: 0.5px; background: #ffeef3a0; display: inline-block; padding: 0.2rem 1.8rem; border-radius: 30px;">
+            <i class="fas fa-heart" style="color: #d47a9a;"></i> Alondra · 22 · 26 sep · Calle Arroyo <i class="fas fa-heart" style="color: #d47a9a;"></i>
+        </div>
+    </div>
+
+    <script>
+        // ===== CONTADOR REGRESIVO =====
+        function actualizarContador() {
+            // Fecha del evento: 26 de septiembre de 2026 a las 20:00
+            const fechaEvento = new Date('September 26, 2026 20:00:00').getTime();
+            const ahora = new Date().getTime();
+            const diferencia = fechaEvento - ahora;
+
+            if (diferencia <= 0) {
+                document.getElementById('dias').textContent = '00';
+                document.getElementById('horas').textContent = '00';
+                document.getElementById('minutos').textContent = '00';
+                document.getElementById('segundos').textContent = '00';
+                return;
+            }
+
+            const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+            const horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
+            const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
+
+            document.getElementById('dias').textContent = String(dias).padStart(2, '0');
+            document.getElementById('horas').textContent = String(horas).padStart(2, '0');
+            document.getElementById('minutos').textContent = String(minutos).padStart(2, '0');
+            document.getElementById('segundos').textContent = String(segundos).padStart(2, '0');
+        }
+
+        // Actualizar cada segundo
+        actualizarContador();
+        setInterval(actualizarContador, 1000);
+
+        // ===== CONTROL DE MÚSICA =====
+        let musicaReproduciendo = false;
+        const audio = document.getElementById('musica');
+        const botonMusica = document.getElementById('botonMusica');
+        const textoMusica = document.getElementById('textoMusica');
+
+        // Intentar cargar la música (si falla, usamos una alternativa)
+        audio.addEventListener('error', function() {
+            // Si falla, intentamos con otra fuente
+            audio.src = 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3';
+        });
+
+        function toggleMusica() {
+            if (musicaReproduciendo) {
+                audio.pause();
+                musicaReproduciendo = false;
+                botonMusica.classList.remove('playing');
+                textoMusica.textContent = '🎵 Música';
+            } else {
+                // Intentar reproducir
+                const promesa = audio.play();
+                if (promesa !== undefined) {
+                    promesa.then(() => {
+                        musicaReproduciendo = true;
+                        botonMusica.classList.add('playing');
+                        textoMusica.textContent = '⏸️ Pausar';
+                    }).catch(error => {
+                        // Si hay error, mostramos mensaje
+                        alert('🎵 ¡Haz clic en la página y luego en el botón de música para activar el audio!');
+                        console.log('Error al reproducir:', error);
+                    });
+                }
+            }
+        }
+
+        // Para que funcione en móviles, al hacer clic en cualquier parte se puede activar
+        document.addEventListener('click', function() {
+            // Si el audio está pausado y no está reproduciendo, lo iniciamos silenciosamente
+            if (audio.paused && !musicaReproduciendo) {
+                // No lo iniciamos automáticamente para no molestar
+            }
+        });
+
+        // ===== ACTUALIZAR DIRECCIÓN EN MAPS =====
+        // El botón de ubicación ya tiene el enlace directo
+        // Puedes personalizar la dirección cambiando el query en el href
+
+        console.log('🎉 ¡Invitación de Alondra cargada!');
+        console.log('📅 26 de septiembre 2026 - 8:00 PM');
+        console.log('📍 Calle Arroyo #23');
+    </script>
+</body>
+</html>
